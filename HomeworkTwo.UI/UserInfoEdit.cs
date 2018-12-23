@@ -61,6 +61,7 @@ namespace HomeworkTwo.UI
                 CreateTime = this.dtpCreateTime.Value
             };
 
+
             Save(user);
 
         }
