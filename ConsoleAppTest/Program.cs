@@ -16,6 +16,7 @@ namespace ConsoleAppTest
         {
             Company company = new Company()
             {
+
                 Id = 1,
                 Name = "软谋教育",
                 CreateTime = DateTime.Now,
@@ -23,6 +24,7 @@ namespace ConsoleAppTest
                 LastModifierId = 1,
                 LastModifyTime = DateTime.Now
             };
+
             Show(company);                   
             Console.ReadKey();
         }
