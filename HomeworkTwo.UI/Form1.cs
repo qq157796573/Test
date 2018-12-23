@@ -17,6 +17,7 @@ namespace HomeworkTwo.UI
             InitializeComponent();
         }
 
+        
         private void UserInfoBtn_Click(object sender, EventArgs e)
         {
             UserInfoForm userInfoForm = new UserInfoForm();
