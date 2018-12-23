@@ -61,7 +61,7 @@ namespace HomeworkTwo.UI
                 CreateTime = this.dtpCreateTime.Value
             };
 
-
+            Console.WriteLine("我就是想测试一下数据");            
             Save(user);
 
         }
