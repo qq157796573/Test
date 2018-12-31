@@ -1,4 +1,6 @@
 ﻿using HomeworkTwo.Comm;
+using HomeworkTwo.Comm.AttributeExtents.Validata;
+using HomeworkTwo.Comm.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,11 +11,13 @@ using System.Threading.Tasks;
 namespace HomeworkTwo.Model
 {
     [Name("User")]
-    public class UserModer : BaseModel
+    public class UserModel : BaseModel
     {
+        [Required]
         [DisplayName("用户名")]
         [Name("Name")]
         public string Name { get; set; }
+        [Required]
         [DisplayName("账号")]
         [Name("Account")]
         public string Account { get; set; }
@@ -34,7 +38,7 @@ namespace HomeworkTwo.Model
         public string CompanyName { get; set; }
         [DisplayName("用户状态")]
         [Name("State")]
-        public int State { get; set; }
+        public int Status { get; set; }
         [DisplayName("用户类型")]
         [Name("UserType")]
         public int UserType { get; set; }

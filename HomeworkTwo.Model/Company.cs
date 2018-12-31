@@ -5,6 +5,7 @@ using HomeworkTwo.Comm.AttributeExtents;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HomeworkTwo.Comm.Model;
 
 namespace HomeworkTwo.Model
 {

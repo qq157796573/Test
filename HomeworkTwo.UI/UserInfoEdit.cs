@@ -12,31 +12,32 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static HomeworkTwo.Comm.EnumComm;
 using HomeworkTwo.Comm.ExtentsMethonds;
+using HomeworkTwo.Comm.Model;
 
 namespace HomeworkTwo.UI
 {
     public partial class UserInfoEdit : Form
     {
         ISqlHerper sqlHerper = FactoryInfo.CreateSqlHerperExample();
-        public UserInfoEdit(UserModer user = null)
+        public UserInfoEdit(UserModel user = null)
         {
             InitializeComponent();
             if (user != null)
             {
                 //lblName
-                this.lblName.Text = user.Name.GetDisplayName();
-                this.lblAccount.Text = user.Account.GetDisplayName();
-                this.lblEmail.Text = user.Email.GetDisplayName();
-                this.lblPassword.Text = user.Password.GetDisplayName();
-                this.lblState.Text = user.State.GetDisplayName();
-                this.lblUserType.Text = user.UserType.GetDisplayName();
-                this.lblMobile.Text = user.Mobile.GetDisplayName();
+                //this.lblName.Text = user.Name.GetDisplayName();
+                //this.lblAccount.Text = user.Account.GetDisplayName();
+                //this.lblEmail.Text = user.Email.GetDisplayName();
+                //this.lblPassword.Text = user.Password.GetDisplayName();
+                //this.lblState.Text = user.State.GetDisplayName();
+                //this.lblUserType.Text = user.UserType.GetDisplayName();
+                //this.lblMobile.Text = user.Mobile.GetDisplayName();
                 //txtValue
                 this.txtName.Text = user.Name;
                 this.txtAccount.Text = user.Account;
                 this.txtEmail.Text = user.Email;
                 this.txtPassword.Text = user.Password;
-                this.txtState.Text = user.State.ToString();
+                this.txtState.Text = user.Status    .ToString();
                 this.txtUserType.Text = user.UserType.ToString();
                 this.txtId.Text = user.Id.ToString();
                 this.txtMobile.Text = user.Mobile;
@@ -48,7 +49,7 @@ namespace HomeworkTwo.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            UserModer user = new UserModer()
+            UserModel user = new UserModel()
             {
                 Id = int.TryParse(txtId.Text, out int p) ? p : p,
                 Account = this.txtAccount.Text,
@@ -56,7 +57,7 @@ namespace HomeworkTwo.UI
                 Email = this.txtEmail.Text,
                 Mobile = this.txtMobile.Text,
                 Password = this.txtPassword.Text,
-                State = 0,//txtState.Text
+                Status = 0,//txtState.Text
                 UserType = 1,// txtUserType.Text
                 CreateTime = this.dtpCreateTime.Value
             };
@@ -66,13 +67,18 @@ namespace HomeworkTwo.UI
 
         }
 
-        private void Save(UserModer user)
+        private void Save(UserModel user)
         {
             if (user.Id > 0)//为修改
             {
                 //修改时间
                 user.LastModifyTime = DateTime.Now;
 
+                IEnumerable<ValidataErrorModel> list = user.Validata();
+                MessageBox.Show(list.Where(p=>p.IsError).Count().ToString());
+                MessageBox.Show(list.Where(p=>p.IsError==true).Count().ToString());
+
+                return;
                 bool flag = sqlHerper.Update(user);
                 if (flag)
                 {

@@ -9,6 +9,7 @@ namespace HomeworkTwo.Comm
     [AttributeUsage(AttributeTargets.Class| AttributeTargets.Property | AttributeTargets.Field, AllowMultiple =false,Inherited =true)]
     public class NameAttribute : Attribute
     {
+        
         public string Name { get; set; }
         public NameAttribute(string name)
         {

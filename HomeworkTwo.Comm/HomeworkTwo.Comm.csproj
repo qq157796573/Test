@@ -43,8 +43,12 @@
   <ItemGroup>
     <Compile Include="AttributeExtents\DisplayNameAttribute.cs" />
     <Compile Include="AttributeExtents\NameAttribute.cs" />
+    <Compile Include="AttributeExtents\Validata\AbstractValidataAttribute.cs" />
+    <Compile Include="AttributeExtents\Validata\RequiredAttribute.cs" />
+    <Compile Include="Model\ValidataErrorModel.cs" />
     <Compile Include="Enum\EnumComm.cs" />
     <Compile Include="ExtentsMethonds\ExtentMethond.cs" />
+    <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

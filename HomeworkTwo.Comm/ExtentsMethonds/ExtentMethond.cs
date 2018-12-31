@@ -1,7 +1,10 @@
 ﻿using HomeworkTwo.Comm.AttributeExtents;
+using HomeworkTwo.Comm.AttributeExtents.Validata;
+using HomeworkTwo.Comm.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,14 +15,14 @@ namespace HomeworkTwo.Comm.ExtentsMethonds
     /// </summary>
     public static class ExtentMethond
     {
+        #region 枚举中文名称
         /// <summary>
-        ///      struct, IComparable, IConvertible, IFormattable
-        ///      在泛型约束中没有直接约束枚举类型
+        /// 获取枚举特性的名称，没有就放回当前属性名称     
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
         /// <returns></returns>
-        public static string GetUserStateName(this Enum value)
+        public static string GetEnumName(this Enum value)
         {
             Type type = value.GetType();
             string name = value.ToString();
@@ -37,26 +40,74 @@ namespace HomeworkTwo.Comm.ExtentsMethonds
             }
             return name;
         }
+        #endregion
 
-        public static string GetDisplayName<T>(this T t)
+        #region 获取属性中文名称
+        /// <summary>
+        /// 获取中文名称
+        /// </summary>
+        /// <param name="property">当前中文名称</param>
+        /// <returns></returns>
+        public static string GetDisplayName(this PropertyInfo property)
         {
-            Type type = typeof(T);
-            string name = type.Name;
             Type attributeType = typeof(DisplayNameAttribute);
-
-            foreach (var attribute in type.GetCustomAttributes(true))
+            string name = property.Name;
+            foreach (var attribute in property.GetCustomAttributes(true))
             {
-                if (type.IsDefined(attributeType, true))
+                DisplayNameAttribute displayNameAttribute = attribute as DisplayNameAttribute;
+                if (displayNameAttribute != null)
                 {
-                    DisplayNameAttribute displayNameAttribute = attribute as DisplayNameAttribute;
-                    if (displayNameAttribute != null)
-                    {
-                        name = displayNameAttribute.Name;
-                        break;
-                    }   
+                    name = displayNameAttribute.Name;
+                    break;
                 }
             }
             return name;
         }
+        #endregion
+
+        #region 获取数据库对应字段名称
+        public static string GetPropName(this PropertyInfo propertyInfo)
+        {
+            string name = propertyInfo.Name;
+            Type attributeType = typeof(NameAttribute);
+            NameAttribute nameAttribute = propertyInfo.GetCustomAttribute(attributeType, true) as NameAttribute;
+            if (nameAttribute != null)
+                name = nameAttribute.Name;
+            return name;
+        }
+        #endregion
+
+        #region 获取类类名
+        public static string GetClassName<T>(this T t) where T : class
+        {
+            Type type = typeof(T);
+            string name = type.Name;
+            NameAttribute nameAttribute = type.GetCustomAttribute(typeof(NameAttribute), true) as NameAttribute;
+            if (nameAttribute != null)
+                name = nameAttribute.Name;
+            return name;
+        }
+
+        public static IEnumerable<ValidataErrorModel> Validata<T>(this T t) where T: BaseModel
+        {
+            Type type = typeof(T);
+            validataErrorModels = new List<ValidataErrorModel>();
+            foreach (PropertyInfo prop in type.GetProperties())
+            {
+                if (prop.IsDefined(typeof(AbstractValidataAttribute),true))
+                {
+                    IEnumerable<AbstractValidataAttribute> abstractValidataAttribute = prop.GetCustomAttributes<AbstractValidataAttribute>(true) as IEnumerable<AbstractValidataAttribute>;
+                    foreach (var validataAttribute in abstractValidataAttribute)
+                    {
+                        validataErrorModels.Add(validataAttribute.Validata(prop.GetValue(t)));
+                    }
+                }
+            }
+            return validataErrorModels;
+        }
+        #endregion
+
+        public static List<ValidataErrorModel> validataErrorModels = null;
+
     }
 }

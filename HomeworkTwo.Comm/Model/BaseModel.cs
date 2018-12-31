@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeworkTwo.Model
+namespace HomeworkTwo.Comm.Model
 {
     public class BaseModel
     {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using HomeworkTwo.IDal;
+using HomeworkTwo.Comm.ExtentsMethonds;
 
 namespace HomeworkTwo.Dal
 {
@@ -36,7 +37,7 @@ namespace HomeworkTwo.Dal
                         T t = new T();
                         foreach (PropertyInfo prop in type.GetProperties())
                         {
-                            prop.SetValue(t,  sdr[prop.Name] is DBNull ? null : sdr[prop.Name]);
+                            prop.SetValue(t, sdr[prop.GetPropName()] is DBNull ? null : sdr[prop.GetPropName()]);
                         }
                         list.Add(t);
                     }
@@ -68,7 +69,7 @@ namespace HomeworkTwo.Dal
                         T t = new T();
                         foreach (PropertyInfo prop in type.GetProperties())
                         {
-                            prop.SetValue(t, sdr[prop.Name] is DBNull ? null : sdr[prop.Name]);
+                            prop.SetValue(t, sdr[prop.GetPropName()] is DBNull ? null : sdr[prop.GetPropName()]);
                         }
                         return t;
                     }
