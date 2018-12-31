@@ -75,10 +75,16 @@ namespace HomeworkTwo.UI
                 user.LastModifyTime = DateTime.Now;
 
                 IEnumerable<ValidataErrorModel> list = user.Validata();
-                MessageBox.Show(list.Where(p=>p.IsError).Count().ToString());
-                MessageBox.Show(list.Where(p=>p.IsError==true).Count().ToString());
-
-                return;
+                if (list.Count()>0)
+                {
+                    foreach (var item in list)
+                    {
+                        MessageBox.Show(item.ErrorMsg);
+                    }
+                    return;
+                }
+               
+                
                 bool flag = sqlHerper.Update(user);
                 if (flag)
                 {

@@ -91,7 +91,7 @@ namespace HomeworkTwo.Comm.ExtentsMethonds
         public static IEnumerable<ValidataErrorModel> Validata<T>(this T t) where T: BaseModel
         {
             Type type = typeof(T);
-            validataErrorModels = new List<ValidataErrorModel>();
+            List<ValidataErrorModel> validataErrorModels = validataErrorModels = new List<ValidataErrorModel>();
             foreach (PropertyInfo prop in type.GetProperties())
             {
                 if (prop.IsDefined(typeof(AbstractValidataAttribute),true))
@@ -99,15 +99,19 @@ namespace HomeworkTwo.Comm.ExtentsMethonds
                     IEnumerable<AbstractValidataAttribute> abstractValidataAttribute = prop.GetCustomAttributes<AbstractValidataAttribute>(true) as IEnumerable<AbstractValidataAttribute>;
                     foreach (var validataAttribute in abstractValidataAttribute)
                     {
-                        validataErrorModels.Add(validataAttribute.Validata(prop.GetValue(t)));
+                        //validataErrorModels.Add(validataAttribute.Validata(prop.GetValue(t)));
+                        ValidataErrorModel validataErrorModel= validataAttribute.Validata(prop.GetValue(t));
+                        if (validataErrorModel.IsError) //只返回错误信息
+                        {
+                            validataErrorModel.ErrorMsg = prop.GetDisplayName() + validataErrorModel.ErrorMsg;
+                            validataErrorModels.Add(validataErrorModel);
+                            //yield return validataErrorModel;
+                        }
                     }
                 }
             }
             return validataErrorModels;
         }
         #endregion
-
-        public static List<ValidataErrorModel> validataErrorModels = null;
-
     }
 }

@@ -44,6 +44,9 @@
     <Compile Include="AttributeExtents\DisplayNameAttribute.cs" />
     <Compile Include="AttributeExtents\NameAttribute.cs" />
     <Compile Include="AttributeExtents\Validata\AbstractValidataAttribute.cs" />
+    <Compile Include="AttributeExtents\Validata\EmailAttribute.cs" />
+    <Compile Include="AttributeExtents\Validata\LengthAttribute.cs" />
+    <Compile Include="AttributeExtents\Validata\MobileAttribute.cs" />
     <Compile Include="AttributeExtents\Validata\RequiredAttribute.cs" />
     <Compile Include="Model\ValidataErrorModel.cs" />
     <Compile Include="Enum\EnumComm.cs" />

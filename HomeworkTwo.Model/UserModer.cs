@@ -1,9 +1,9 @@
 ﻿using HomeworkTwo.Comm;
+using HomeworkTwo.Comm.AttributeExtents;
 using HomeworkTwo.Comm.AttributeExtents.Validata;
 using HomeworkTwo.Comm.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +20,20 @@ namespace HomeworkTwo.Model
         [Required]
         [DisplayName("账号")]
         [Name("Account")]
+        [Length(5,13)]
         public string Account { get; set; }
+        [Required]
         [DisplayName("密码")]
         [Name("Password")]
+        [Length(8,22)]
         public string Password { get; set; }
         [DisplayName("邮箱")]
         [Name("Email")]
+        [Email]
         public string Email { get; set; }
         [DisplayName("手机号码")]
         [Name("Mobile")]
+        [Mobile]
         public string Mobile { get; set; }
         [DisplayName("客户编号")]
         [Name("CompanyId")]

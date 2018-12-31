@@ -3,14 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace HomeworkTwo.Comm.AttributeExtents.Validata
 {
-    public class RequiredAttribute : AbstractValidataAttribute
+    public class EmailAttribute : AbstractValidataAttribute
     {
-        public RequiredAttribute()
-            : base(Rule)
+        private static string _Reg = @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
+        public EmailAttribute():base(Rule)
         {
 
         }
@@ -21,10 +22,15 @@ namespace HomeworkTwo.Comm.AttributeExtents.Validata
                 IsError = false,
                 ErrorMsg = null
             };
-            if (error is null || string.IsNullOrWhiteSpace(error.ToString()))
+            if (error is null)
             {
                 validataErrorModel.IsError = true;
-                validataErrorModel.ErrorMsg = "不能为空或者为null！";
+                validataErrorModel.ErrorMsg = "不能为空！";
+            }
+            else if (!Regex.IsMatch(error.ToString(), _Reg))
+            {
+                validataErrorModel.IsError = true;
+                validataErrorModel.ErrorMsg = "格式不正确！";
             }
             return validataErrorModel;
         }

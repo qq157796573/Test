@@ -15,6 +15,9 @@ namespace HomeworkTwo.Dal
     {
         private static string StrCon = ConfigurationManager.ConnectionStrings["dbName"].ConnectionString;
 
+
+      
+
         /// <summary>
         /// 查询所有数据
         /// </summary>
@@ -44,6 +47,15 @@ namespace HomeworkTwo.Dal
                 }
                 return list;
             }
+        }
+        private S Q<T, S>(string sql)
+        {
+            using (SqlConnection conn = new SqlConnection(StrCon))
+            {
+                conn.Open();
+
+            }
+            return default(S);
         }
         /// <summary>
         /// 按编号查询
