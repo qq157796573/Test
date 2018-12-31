@@ -24,7 +24,6 @@ namespace HomeworkTwo.UI
         ISqlHerper sqlHerper = FactoryInfo.CreateSqlHerperExample();
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(UserState.Delete.GetEnumName());
             if (string.IsNullOrEmpty(this.txtNo.Text))
                 this.dgvUserData.DataSource = sqlHerper.QueryAll<UserModel>();
             else
