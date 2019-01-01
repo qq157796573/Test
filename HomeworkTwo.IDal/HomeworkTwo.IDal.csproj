@@ -44,5 +44,11 @@
     <Compile Include="ISqlHerper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HomeworkTwo.Comm\HomeworkTwo.Comm.csproj">
+      <Project>{6e39df32-bb49-4cec-acb0-8ac30bb4dae7}</Project>
+      <Name>HomeworkTwo.Comm</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

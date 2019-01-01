@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpCreateTime = new System.Windows.Forms.DateTimePicker();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtAccount = new System.Windows.Forms.TextBox();
@@ -41,7 +42,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblCreateTime = new System.Windows.Forms.Label();
             this.txtMobile = new System.Windows.Forms.TextBox();
             this.lblMobile = new System.Windows.Forms.Label();
             this.txtUserType = new System.Windows.Forms.TextBox();
@@ -50,7 +51,6 @@
             this.lblState = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
-            this.dtpCreateTime = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,7 +69,7 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.textBox6);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lblCreateTime);
             this.groupBox1.Controls.Add(this.txtMobile);
             this.groupBox1.Controls.Add(this.lblMobile);
             this.groupBox1.Controls.Add(this.txtUserType);
@@ -85,11 +85,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "用户信息";
             // 
+            // dtpCreateTime
+            // 
+            this.dtpCreateTime.Location = new System.Drawing.Point(182, 227);
+            this.dtpCreateTime.Name = "dtpCreateTime";
+            this.dtpCreateTime.Size = new System.Drawing.Size(133, 21);
+            this.dtpCreateTime.TabIndex = 26;
+            // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(231, 343);
+            this.btnSave.Location = new System.Drawing.Point(182, 337);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(141, 37);
             this.btnSave.TabIndex = 25;
             this.btnSave.Text = "保存数据";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -97,16 +104,16 @@
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(317, 20);
+            this.txtId.Location = new System.Drawing.Point(368, 20);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(100, 21);
+            this.txtId.Size = new System.Drawing.Size(49, 21);
             this.txtId.TabIndex = 24;
             // 
             // txtAccount
             // 
             this.txtAccount.Location = new System.Drawing.Point(180, 56);
             this.txtAccount.Name = "txtAccount";
-            this.txtAccount.Size = new System.Drawing.Size(100, 21);
+            this.txtAccount.Size = new System.Drawing.Size(133, 21);
             this.txtAccount.TabIndex = 23;
             // 
             // lblAccount
@@ -122,7 +129,7 @@
             // 
             this.txtPassword.Location = new System.Drawing.Point(182, 83);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(100, 21);
+            this.txtPassword.Size = new System.Drawing.Size(133, 21);
             this.txtPassword.TabIndex = 21;
             // 
             // lblPassword
@@ -138,7 +145,7 @@
             // 
             this.txtEmail.Location = new System.Drawing.Point(182, 113);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(100, 21);
+            this.txtEmail.Size = new System.Drawing.Size(133, 21);
             this.txtEmail.TabIndex = 19;
             // 
             // lblEmail
@@ -154,7 +161,7 @@
             // 
             this.textBox7.Location = new System.Drawing.Point(182, 291);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 21);
+            this.textBox7.Size = new System.Drawing.Size(133, 21);
             this.textBox7.TabIndex = 13;
             // 
             // label7
@@ -170,7 +177,7 @@
             // 
             this.textBox6.Location = new System.Drawing.Point(182, 257);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 21);
+            this.textBox6.Size = new System.Drawing.Size(133, 21);
             this.textBox6.TabIndex = 11;
             // 
             // label6
@@ -182,20 +189,20 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "label6";
             // 
-            // label5
+            // lblCreateTime
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(98, 233);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "label5";
+            this.lblCreateTime.AutoSize = true;
+            this.lblCreateTime.Location = new System.Drawing.Point(98, 233);
+            this.lblCreateTime.Name = "lblCreateTime";
+            this.lblCreateTime.Size = new System.Drawing.Size(41, 12);
+            this.lblCreateTime.TabIndex = 8;
+            this.lblCreateTime.Text = "label5";
             // 
             // txtMobile
             // 
             this.txtMobile.Location = new System.Drawing.Point(182, 203);
             this.txtMobile.Name = "txtMobile";
-            this.txtMobile.Size = new System.Drawing.Size(100, 21);
+            this.txtMobile.Size = new System.Drawing.Size(133, 21);
             this.txtMobile.TabIndex = 7;
             // 
             // lblMobile
@@ -211,7 +218,7 @@
             // 
             this.txtUserType.Location = new System.Drawing.Point(182, 176);
             this.txtUserType.Name = "txtUserType";
-            this.txtUserType.Size = new System.Drawing.Size(100, 21);
+            this.txtUserType.Size = new System.Drawing.Size(133, 21);
             this.txtUserType.TabIndex = 5;
             // 
             // lblUserType
@@ -227,7 +234,7 @@
             // 
             this.txtState.Location = new System.Drawing.Point(182, 140);
             this.txtState.Name = "txtState";
-            this.txtState.Size = new System.Drawing.Size(100, 21);
+            this.txtState.Size = new System.Drawing.Size(133, 21);
             this.txtState.TabIndex = 3;
             // 
             // lblState
@@ -243,7 +250,7 @@
             // 
             this.txtName.Location = new System.Drawing.Point(180, 20);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(100, 21);
+            this.txtName.Size = new System.Drawing.Size(133, 21);
             this.txtName.TabIndex = 1;
             // 
             // lblName
@@ -254,13 +261,6 @@
             this.lblName.Size = new System.Drawing.Size(47, 12);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "lblName";
-            // 
-            // dtpCreateTime
-            // 
-            this.dtpCreateTime.Location = new System.Drawing.Point(182, 227);
-            this.dtpCreateTime.Name = "dtpCreateTime";
-            this.dtpCreateTime.Size = new System.Drawing.Size(100, 21);
-            this.dtpCreateTime.TabIndex = 26;
             // 
             // UserInfoEdit
             // 
@@ -291,7 +291,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblCreateTime;
         private System.Windows.Forms.TextBox txtMobile;
         private System.Windows.Forms.Label lblMobile;
         private System.Windows.Forms.TextBox txtUserType;

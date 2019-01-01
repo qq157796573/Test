@@ -10,7 +10,7 @@ namespace HomeworkTwo.Comm.AttributeExtents.Validata
 {
     public class MobileAttribute : AbstractValidataAttribute
     {
-        private static string _Reg = @"/^(\+?0?86\-?)?1[345789]\d{9}$/";
+        private static string _Reg = "^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\\d{8}$";
         public MobileAttribute()
             : base(Rule)
         {

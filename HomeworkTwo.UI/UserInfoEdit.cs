@@ -19,31 +19,34 @@ namespace HomeworkTwo.UI
     public partial class UserInfoEdit : Form
     {
         ISqlHerper sqlHerper = FactoryInfo.CreateSqlHerperExample();
-        public UserInfoEdit(UserModel user = null)
+        private Action _Action = null;
+        public UserInfoEdit(UserModel model = null,Action action=null)
         {
+            _Action = action;
             InitializeComponent();
-            if (user != null)
+            if (model != null)
             {
                 //lblName
-                //this.lblName.Text = user.Name.GetDisplayName();
-                //this.lblAccount.Text = user.Account.GetDisplayName();
-                //this.lblEmail.Text = user.Email.GetDisplayName();
-                //this.lblPassword.Text = user.Password.GetDisplayName();
-                //this.lblState.Text = user.State.GetDisplayName();
-                //this.lblUserType.Text = user.UserType.GetDisplayName();
-                //this.lblMobile.Text = user.Mobile.GetDisplayName();
+                this.lblName.Text = ExtentMethond.MyLabelFor<UserModel, string>(m => m.Name);
+                this.lblAccount.Text = ExtentMethond.MyLabelFor<UserModel, string>(m => m.Account);
+                this.lblEmail.Text = ExtentMethond.MyLabelFor<UserModel, string>(m => m.Email);
+                this.lblPassword.Text = ExtentMethond.MyLabelFor<UserModel, string>(m => m.Password);
+                this.lblState.Text = ExtentMethond.MyLabelFor<UserModel, int>(m => m.Status);
+                this.lblUserType.Text = ExtentMethond.MyLabelFor<UserModel, int>(m => m.UserType);
+                this.lblMobile.Text = ExtentMethond.MyLabelFor<UserModel, string>(m => m.Mobile);
+                this.lblCreateTime.Text = ExtentMethond.MyLabelFor<UserModel, DateTime>(m => m.CreateTime);
                 //txtValue
-                this.txtName.Text = user.Name;
-                this.txtAccount.Text = user.Account;
-                this.txtEmail.Text = user.Email;
-                this.txtPassword.Text = user.Password;
-                this.txtState.Text = user.Status    .ToString();
-                this.txtUserType.Text = user.UserType.ToString();
-                this.txtId.Text = user.Id.ToString();
-                this.txtMobile.Text = user.Mobile;
-                this.dtpCreateTime.Value = user.CreateTime;
-                this.txtId.Hide();
 
+                this.txtName.Text = model.Name;
+                this.txtAccount.Text = model.Account;
+                this.txtEmail.Text = model.Email;
+                this.txtPassword.Text = model.Password;
+                this.txtState.Text = model.Status.ToString();
+                this.txtUserType.Text = model.UserType.ToString();
+                this.txtId.Text = model.Id.ToString();
+                this.txtMobile.Text = model.Mobile;
+                this.dtpCreateTime.Value = model.CreateTime;
+                this.txtId.Hide();
             }
         }
 
@@ -62,7 +65,7 @@ namespace HomeworkTwo.UI
                 CreateTime = this.dtpCreateTime.Value
             };
 
-            Console.WriteLine("我就是想测试一下数据");            
+            Console.WriteLine("我就是想测试一下数据");
             Save(user);
 
         }
@@ -75,7 +78,7 @@ namespace HomeworkTwo.UI
                 user.LastModifyTime = DateTime.Now;
 
                 IEnumerable<ValidataErrorModel> list = user.Validata();
-                if (list.Count()>0)
+                if (list.Count() > 0)
                 {
                     foreach (var item in list)
                     {
@@ -83,13 +86,16 @@ namespace HomeworkTwo.UI
                     }
                     return;
                 }
-               
-                
+
+
                 bool flag = sqlHerper.Update(user);
                 if (flag)
                 {
                     MessageBox.Show("修改成功");
                     this.Close();
+                    Console.WriteLine("Update 11111");
+                    _Action.Invoke();
+                    Console.WriteLine("Update 2222");
                 }
                 else
                     MessageBox.Show("修改失败");

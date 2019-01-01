@@ -52,6 +52,7 @@
     <Compile Include="Enum\EnumComm.cs" />
     <Compile Include="ExtentsMethonds\ExtentMethond.cs" />
     <Compile Include="Model\BaseModel.cs" />
+    <Compile Include="MyCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

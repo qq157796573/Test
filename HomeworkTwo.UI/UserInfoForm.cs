@@ -29,10 +29,14 @@ namespace HomeworkTwo.UI
             else
             {
                 UserModel userModer = sqlHerper.QueryOne<UserModel>(int.TryParse(this.txtNo.Text, out int p) ? p : 0);
-                DataGridViewRow row = new DataGridViewRow();
-
-                this.dgvUserData.DataSource = new List<UserModel>() { userModer };
-                this.dgvUserData.Refresh();
+                if (userModer != null)
+                {
+                    this.dgvUserData.DataSource = new List<UserModel>() { userModer };
+                }
+                else
+                {
+                    this.dgvUserData.DataSource = null;
+                }
             }
         }
         /// <summary>
@@ -43,11 +47,21 @@ namespace HomeworkTwo.UI
         private void tsmUpdate_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = this.dgvUserData.CurrentRow;
-            int id= Convert.ToInt32(row.Cells["Id"].Value);
+            int id = Convert.ToInt32(row.Cells["Id"].Value);
             UserModel user = sqlHerper.QueryOne<UserModel>(id);
-            UserInfoEdit userInfoEdit = new UserInfoEdit(user);
-            userInfoEdit.Text = "用户信息编辑"; 
+            UserInfoEdit userInfoEdit = new UserInfoEdit(user, () => 
+            {
+                this.btnSelect.Click += BtnSelect_Click;
+                this.btnSelect.PerformClick();
+                this.btnSelect.Click -= BtnSelect_Click;
+            });
+            userInfoEdit.Text = "用户信息编辑";
             userInfoEdit.Show();
+        }
+
+        private void BtnSelect_Click(object sender, EventArgs e)
+        {
+            this.btnSelect_Click(sender, e);
         }
     }
 }
